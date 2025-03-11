@@ -12,6 +12,7 @@ public class CoinCounterUI : MonoBehaviour
 
     private float containerInitPosition;
     private float moveAmount;
+    [SerializeField] private Ease animationCurve;
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class CoinCounterUI : MonoBehaviour
     public void UpdateScore(int score)
     {
         toUpdate.SetText($"{score}");
-        coinTextContainer.DOLocalMoveY(containerInitPosition + moveAmount, duration);
+        coinTextContainer.DOLocalMoveY(containerInitPosition + moveAmount, duration).SetEase(animationCurve);
         StartCoroutine(ResetCoinContainer(score));
     }
 
